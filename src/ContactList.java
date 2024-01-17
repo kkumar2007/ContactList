@@ -26,6 +26,43 @@ public class ContactList
         System.out.println("0. Exit");
         int menu = s.nextInt();
         s.nextLine();
+        if(menu == 1) {
+            System.out.println("Select a type of contact to add");
+            System.out.println("1. Student");
+            System.out.println("2. Athlete");
+            int choice = s.nextInt();
+            s.nextLine();
+            if (choice == 1) {
+                System.out.println("Please fill in the following information");
+                System.out.println("First Name: ");
+                String name = s.nextLine();
+                System.out.println("Last Name: ");
+                String last = s.nextLine();
+                System.out.println("Phone Number: ");
+                String phone = s.nextLine();
+                System.out.println("Grade: ");
+                int grade = s.nextInt();
+                s.nextLine();
+                Person newer = new Student(name, last, phone, grade);
+                contacts.add(newer);
+            } else if (choice == 2) {
+                System.out.println("Please fill in the following information");
+                System.out.println("First Name: ");
+                String name1 = s.nextLine();
+                System.out.println("Last Name: ");
+                String last1 = s.nextLine();
+                System.out.println("Phone Number: ");
+                String phone1 = s.nextLine();
+                System.out.println("Power: ");
+                int power = s.nextInt();
+                s.nextLine();
+                Person newer1 = new Athlete(name1, last1, phone1, power);
+                contacts.add(newer1);
+            }
+        }
+    }
+    public void printContacts()
+    {
 
     }
 }
