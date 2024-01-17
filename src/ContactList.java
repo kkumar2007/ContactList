@@ -64,21 +64,23 @@ public class ContactList
                         Person temp = contacts.get(j);
                         contacts.set(j, contacts.get(j + 1));
                         contacts.set(j + 1, temp);
+                        printContacts();
                     }
                 } else if (sortBy == 1) {
                     if (person1.getLastName().compareTo(person2.getLastName()) < 0) {
                         Person temp = contacts.get(j);
                         contacts.set(j, contacts.get(j + 1));
                         contacts.set(j + 1, temp);
+                        printContacts();
                     }
                 } else if (sortBy == 2) {
                     if (person1.getPhoneNumber().compareTo(person2.getPhoneNumber()) < 0) {
                         Person temp = contacts.get(j);
                         contacts.set(j, contacts.get(j + 1));
                         contacts.set(j + 1, temp);
+                        printContacts();
                     }
                 }
-
             }
         }
     }
@@ -113,7 +115,7 @@ public class ContactList
             }
         }
     }
-    public void run ()
+    public void run()
     {
         Scanner s = new Scanner(System.in);
         System.out.println("Menu");
@@ -127,6 +129,37 @@ public class ContactList
         System.out.println("8. Search by Phone Number");
         System.out.println("0. Exit");
         int menu = s.nextInt();
-        s.nextLine();
+        s.nextLine();//fix this
+        while(menu != 0) {
+            if (menu == 1) {
+                addContact();
+            }
+            if (menu == 2) {
+                sort(0);
+            }
+            if (menu == 3) {
+                sort(1);
+            }
+            if (menu == 4) {
+                sort(2);
+            }
+            if (menu == 5) {
+                printContacts();
+            }
+            if (menu == 6) {
+                String firstName = s.nextLine();
+                s.nextLine();
+                searchByFirstName(firstName);
+            }
+            if (menu == 7) {
+                String lastName = s.nextLine();
+                searchByLastName(lastName);
+            }
+            if (menu == 8) {
+                String phoneNumber = s.nextLine();
+                s.nextLine();
+                searchByPhoneNumber(phoneNumber);
+            }
+        }
     }
 }
