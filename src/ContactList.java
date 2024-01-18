@@ -55,34 +55,28 @@ public class ContactList
         }
     }
     public void sort(int sortBy) {
+        int comparisonResult = 0;
         for (int i = 0; i < contacts.size() - 1; i++) {
             for (int j = 0; j < contacts.size() - i - 1; j++) {
                 Person person1 = contacts.get(j);
                 Person person2 = contacts.get(j + 1);
                 if (sortBy == 0) {
-                    if (person1.getFirstName().compareTo(person2.getFirstName()) < 0) {
-                        Person temp = contacts.get(j);
-                        contacts.set(j, contacts.get(j + 1));
-                        contacts.set(j + 1, temp);
-                        printContacts();
-                    }
+                    comparisonResult = person1.getFirstName().compareTo(person2.getFirstName());
                 } else if (sortBy == 1) {
-                    if (person1.getLastName().compareTo(person2.getLastName()) < 0) {
-                        Person temp = contacts.get(j);
-                        contacts.set(j, contacts.get(j + 1));
-                        contacts.set(j + 1, temp);
-                        printContacts();
-                    }
+                    comparisonResult = person1.getLastName().compareTo(person2.getLastName());
                 } else if (sortBy == 2) {
-                    if (person1.getPhoneNumber().compareTo(person2.getPhoneNumber()) < 0) {
-                        Person temp = contacts.get(j);
-                        contacts.set(j, contacts.get(j + 1));
-                        contacts.set(j + 1, temp);
-                        printContacts();
-                    }
+                    comparisonResult = person1.getPhoneNumber().compareTo(person2.getPhoneNumber());
+                }
+
+                if (comparisonResult > 0) {
+                    // Swap
+                    Person temp = contacts.get(j);
+                    contacts.set(j, contacts.get(j + 1));
+                    contacts.set(j + 1, temp);
                 }
             }
         }
+        printContacts();
     }
     public Person searchByFirstName(String firstName) {
         for (Person person : contacts) {
@@ -115,12 +109,11 @@ public class ContactList
             }
         }
     }
-    public void run()
-    {
+    public void run() {
         Scanner s = new Scanner(System.in);
-        //fix this
-        boolean t = false;
-        while(t != true) {
+        boolean exit = false;
+
+        while (!exit) {
             System.out.println("Menu");
             System.out.println("1. Add Contact");
             System.out.println("2. List All Contacts by First Name");
@@ -135,37 +128,46 @@ public class ContactList
             s.nextLine();
             if (menu == 1) {
                 addContact();
-            }
-            if (menu == 2) {
+            } else if (menu == 2) {
                 sort(0);
-            }
-            if (menu == 3) {
+            } else if (menu == 3) {
                 sort(1);
-            }
-            if (menu == 4) {
+            } else if (menu == 4) {
                 sort(2);
-            }
-            if (menu == 5) {
+            } else if (menu == 5) {
                 printContacts();
-            }
-            if (menu == 6) {
+            } else if (menu == 6) {
+                System.out.println("Enter First Name to search:");
                 String firstName = s.nextLine();
-                s.nextLine();
-                searchByFirstName(firstName);
-            }
-            if (menu == 7) {
+                Person result1 = searchByFirstName(firstName);
+                if (result1 != null) {
+                    System.out.println(result1);
+                } else {
+                    System.out.println("Person not found.");
+                }
+            } else if (menu == 7) {
+                System.out.println("Enter Last Name to search:");
                 String lastName = s.nextLine();
-                searchByLastName(lastName);
-            }
-            if (menu == 8) {
+                Person result2 = searchByLastName(lastName);
+                if (result2 != null) {
+                    System.out.println(result2);
+                } else {
+                    System.out.println("Person not found.");
+                }
+            } else if (menu == 8) {
+                System.out.println("Enter Phone Number to search:");
                 String phoneNumber = s.nextLine();
-                s.nextLine();
-                searchByPhoneNumber(phoneNumber);
+                Person result3 = searchByPhoneNumber(phoneNumber);
+                if (result3 != null) {
+                    System.out.println(result3);
+                } else {
+                    System.out.println("Person not found.");
+                }
+            } else if (menu == 0) {
+                exit = true;
+            } else {
+                System.out.println("Invalid option. Please try again.");
             }
-            if (menu == 0) {
-                t = true;
-            }
-
         }
     }
 }
