@@ -1,59 +1,78 @@
+//Kavan Kumar
+//CS1
+//Mr. Blick
+//Contact List
 import java.util.ArrayList;
 import java.util.Scanner;
+
+// ContactList class for managing a list of Person objects
 public class ContactList
 {
+    // Private ArrayList to store Person objects
     private ArrayList<Person> contacts;
+
+    // Constructor to initialize the ContactList with an empty ArrayList
     public ContactList()
     {
         contacts = new ArrayList<Person>();
     }
+
+    // Getter method to retrieve the list of contacts
     public ArrayList<Person> getContacts()
     {
         return contacts;
     }
+
+    // Method to add a new contact to the list based on user input
     public void addContact()
     {
         Scanner s = new Scanner(System.in);
-            System.out.println("Select a type of contact to add");
-            System.out.println("1. Student");
-            System.out.println("2. Athlete");
-            int choice = s.nextInt();
+        System.out.println("Select a type of contact to add");
+        System.out.println("1. Student");
+        System.out.println("2. Athlete");
+        int choice = s.nextInt();
+        s.nextLine();
+        if (choice == 1) {
+            // Adding a Student contact
+            System.out.println("Please fill in the following information");
+            System.out.println("First Name: ");
+            String name = s.nextLine();
+            System.out.println("Last Name: ");
+            String last = s.nextLine();
+            System.out.println("Phone Number: ");
+            String phone = s.nextLine();
+            System.out.println("Grade: ");
+            int grade = s.nextInt();
             s.nextLine();
-            if (choice == 1) {
-                System.out.println("Please fill in the following information");
-                System.out.println("First Name: ");
-                String name = s.nextLine();
-                System.out.println("Last Name: ");
-                String last = s.nextLine();
-                System.out.println("Phone Number: ");
-                String phone = s.nextLine();
-                System.out.println("Grade: ");
-                int grade = s.nextInt();
-                s.nextLine();
-                Person newer = new Student(name, last, phone, grade);
-                contacts.add(newer);
-            } else if (choice == 2) {
-                System.out.println("Please fill in the following information");
-                System.out.println("First Name: ");
-                String name1 = s.nextLine();
-                System.out.println("Last Name: ");
-                String last1 = s.nextLine();
-                System.out.println("Phone Number: ");
-                String phone1 = s.nextLine();
-                System.out.println("Power: ");
-                int power = s.nextInt();
-                s.nextLine();
-                Person newer1 = new Athlete(name1, last1, phone1, power);
-                contacts.add(newer1);
-            }
+            Person newer = new Student(name, last, phone, grade);
+            contacts.add(newer);
+        } else if (choice == 2) {
+            // Adding an Athlete contact
+            System.out.println("Please fill in the following information");
+            System.out.println("First Name: ");
+            String name1 = s.nextLine();
+            System.out.println("Last Name: ");
+            String last1 = s.nextLine();
+            System.out.println("Phone Number: ");
+            String phone1 = s.nextLine();
+            System.out.println("Power: ");
+            int power = s.nextInt();
+            s.nextLine();
+            Person newer1 = new Athlete(name1, last1, phone1, power);
+            contacts.add(newer1);
+        }
     }
+
+    // Method to print all contacts in the list
     public void printContacts()
     {
-        for(Person p: contacts)
+        for (Person p : contacts)
         {
             System.out.println(p);
         }
     }
+
+    // Method to sort contacts based on the specified criteria
     public void sort(int sortBy) {
         int comparisonResult = 0;
         for (int i = 0; i < contacts.size() - 1; i++) {
@@ -78,6 +97,8 @@ public class ContactList
         }
         printContacts();
     }
+
+    // Method to search for a contact by first name
     public Person searchByFirstName(String firstName) {
         for (Person person : contacts) {
             if (person.getFirstName().equalsIgnoreCase(firstName)) {
@@ -86,6 +107,8 @@ public class ContactList
         }
         return null;
     }
+
+    // Method to search for a contact by last name
     public Person searchByLastName(String lastName) {
         for (Person person : contacts) {
             if (person.getLastName().equalsIgnoreCase(lastName)) {
@@ -94,6 +117,8 @@ public class ContactList
         }
         return null;
     }
+
+    // Method to search for a contact by phone number
     public Person searchByPhoneNumber(String phoneNumber) {
         for (Person person : contacts) {
             if (person.getPhoneNumber().equals(phoneNumber)) {
@@ -102,6 +127,8 @@ public class ContactList
         }
         return null;
     }
+
+    // Method to list all students in the contact list
     public void listStudents() {
         for (Person person : contacts) {
             if (person instanceof Student) {
@@ -109,10 +136,14 @@ public class ContactList
             }
         }
     }
+
+    // Method to run the main functionality of the ContactList
     public void run() {
         Scanner s = new Scanner(System.in);
         boolean exit = false;
-
+        System.out.println("Welcome to your Contacts List");
+        System.out.println("Please pick from the following menu options");
+        System.out.println("");
         while (!exit) {
             System.out.println("Menu");
             System.out.println("1. Add Contact");
@@ -170,10 +201,13 @@ public class ContactList
             }
         }
     }
+
+    // Main method for testing the ContactList class
     public static void main(String[] args) {
+        // Creating instances of Person, Student, and ContactList
         Person p = new Person("Kavan", "Kumar", "9294180042");
         Student s = new Student("Kairav", "Kumar", "2039979276", 7);
         ContactList contact = new ContactList();
-        contact.run();
+        contact.run(); // Running the ContactList functionality
     }
 }
