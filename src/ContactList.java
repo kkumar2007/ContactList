@@ -174,7 +174,7 @@ public class ContactList
                 if (result1 != null) {
                     System.out.println(result1);
                 } else {
-                    System.out.println("Person not found.");
+                    System.out.println(firstName + "is not in the list");
                 }
             } else if (menu == 7) {
                 System.out.println("Enter Last Name to search:");
@@ -183,7 +183,7 @@ public class ContactList
                 if (result2 != null) {
                     System.out.println(result2);
                 } else {
-                    System.out.println("Person not found.");
+                    System.out.println(lastName + "is not in the list");
                 }
             } else if (menu == 8) {
                 System.out.println("Enter Phone Number to search:");
@@ -192,7 +192,7 @@ public class ContactList
                 if (result3 != null) {
                     System.out.println(result3);
                 } else {
-                    System.out.println("Person not found.");
+                    System.out.println(phoneNumber + "is not in the list");
                 }
             } else if (menu == 0) {
                 exit = true;
